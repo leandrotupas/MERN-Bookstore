@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const bookSchema = mongoose.Schema( //Recipe for Books to enter the DB
     {
@@ -12,7 +12,7 @@ const bookSchema = mongoose.Schema( //Recipe for Books to enter the DB
         },
         publishYear: {
             type: Number,
-            requiredL: true,
+            required: true,
         },
     },
 
@@ -22,4 +22,4 @@ const bookSchema = mongoose.Schema( //Recipe for Books to enter the DB
     
 );
 
-export const Cat = mongoose.model('Cat', { name: String});
+export const Book = mongoose.model('Cat', bookSchema); //export =  can be used outside of this file
