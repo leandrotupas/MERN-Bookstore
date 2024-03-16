@@ -11,13 +11,16 @@ const app = express();
 app.use(express.json());
 
 //Middleman to handle CORS Policy
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type']
-    })
-);
+
+app.use(cors());
+
+// app.use(
+//     cors({
+//         origin: 'http://localhost:3000',
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders: ['Content-Type']
+//     })
+// );
 
 //Uses route from routes folder
 app.use('/books', booksRoute);
