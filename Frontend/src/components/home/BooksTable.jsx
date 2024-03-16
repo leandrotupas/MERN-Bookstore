@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import { BiShow } from 'react-icons/bi';
+import BookModal from './BookModal';
 
 const BooksTable = ({ books }) => {
+    const [showModal, setShowModal] = useState(false);
     return (
         <table className="w-full border-separate border border-gray-300">
             <thead>
@@ -25,6 +28,10 @@ const BooksTable = ({ books }) => {
                         <td className="px-4 py-2 border border-gray-300 hidden md:table-cell">{book.publishYear}</td>
                         <td className="px-4 py-2 border border-gray-300 text-center">
                             <div className="flex justify-center items-center gap-x-4">
+                                <BiShow 
+                                    className='text-3xl text-blue-800 hover:text-black cursor-pointer'
+                                    onClick={() => setShowModal(true)}
+                                />
                                 <Link to={`/books/details/${book._id}`}>
                                     <BsInfoCircle className="text-green-800 text-2xl" />
                                 </Link>
@@ -34,6 +41,11 @@ const BooksTable = ({ books }) => {
                                 <Link to={`/books/delete/${book._id}`}>
                                     <MdOutlineDelete className="text-red-600 text-2xl" />
                                 </Link>
+                                {
+                                    showModal && (
+                                        <BookModal book={book} onClose={() => setShowModal(false)} />
+                                    )
+                                }
                             </div>
                         </td>
                     </tr>
